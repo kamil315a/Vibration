@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Vibration</string>
+    <string name="vibrationoff">VibrationOff</string>
+    <string name="vibrationon">VibrationOn</string>
+</resources>
