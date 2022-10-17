@@ -3,14 +3,9 @@ package com.example.vibration;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationAttributes;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.os.VibratorManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,7 +15,7 @@ public
 class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);;
+
     @Override
     protected
     void onCreate(Bundle savedInstanceState)
@@ -35,12 +30,13 @@ class MainActivity extends AppCompatActivity {
             public
             void onClick(View view)
                 {
-                    try {
-                        vibrator.vibrate(5000);
-                    }catch (Exception e){
-                        Toast.makeText(MainActivity.this, "On Failure", Toast.LENGTH_SHORT).show();
-
-                    }
+                try {
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(5000);
+                    Toast.makeText(MainActivity.this, "5 seconds vibration", Toast.LENGTH_SHORT).show();
+                }catch (Exception exception){
+                    Toast.makeText(MainActivity.this, "On Failure: Vibration OFF", Toast.LENGTH_SHORT).show();
+                }
                  }
 
 
@@ -51,6 +47,7 @@ class MainActivity extends AppCompatActivity {
             void onClick(View view)
                 {
                     try {
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibrator.cancel();
                         Toast.makeText(MainActivity.this, "Vibration OFF", Toast.LENGTH_SHORT).show();
                     }catch (Exception exception){
